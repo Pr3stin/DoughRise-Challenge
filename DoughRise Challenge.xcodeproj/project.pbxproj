@@ -15,6 +15,7 @@
 		8C0F645D2A0C642D00FC6586 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C0F645B2A0C642D00FC6586 /* LaunchScreen.storyboard */; };
 		8C7372CA2A0F14030077CF5D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7372C92A0F14030077CF5D /* HomeViewController.swift */; };
 		8C7372CC2A1001490077CF5D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7372CB2A1001490077CF5D /* Category.swift */; };
+		8C76F6862A103E8300FA58D5 /* CellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76F6852A103E8300FA58D5 /* CellTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		8C0F645E2A0C642D00FC6586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C7372C92A0F14030077CF5D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8C7372CB2A1001490077CF5D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		8C76F6852A103E8300FA58D5 /* CellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		8C7372CD2A1001560077CF5D /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				8C76F6852A103E8300FA58D5 /* CellTableViewCell.swift */,
 				8C7372CB2A1001490077CF5D /* Category.swift */,
 			);
 			path = "Data Model";
@@ -163,6 +166,7 @@
 				8C0F64552A0C642C00FC6586 /* ViewController.swift in Sources */,
 				8C7372CC2A1001490077CF5D /* Category.swift in Sources */,
 				8C0F64512A0C642C00FC6586 /* AppDelegate.swift in Sources */,
+				8C76F6862A103E8300FA58D5 /* CellTableViewCell.swift in Sources */,
 				8C0F64532A0C642C00FC6586 /* SceneDelegate.swift in Sources */,
 				8C7372CA2A0F14030077CF5D /* HomeViewController.swift in Sources */,
 			);

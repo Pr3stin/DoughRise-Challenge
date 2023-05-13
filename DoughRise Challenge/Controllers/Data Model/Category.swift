@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Category {
+class CategoryClass {
     var title: String = ""
     var spent: String = ""
     var left: String = ""
