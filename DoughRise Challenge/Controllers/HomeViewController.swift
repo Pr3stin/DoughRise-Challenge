@@ -12,6 +12,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    
+    @IBOutlet weak var MonthlyProgress: UIProgressView!
     @IBOutlet weak var BudgetBreakdownView: UIView!
     @IBOutlet weak var MonthlyBudgetView: UIView!
     @IBOutlet weak var BudgetLabel: UILabel!
@@ -37,10 +39,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         CategoryTableView?.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         CategoryTableView?.layer.cornerRadius = 25
         AddButton?.layer.cornerRadius = 0.5 * AddButton.bounds.size.width
+        MonthlyProgress.transform = MonthlyProgress.transform.scaledBy(x: 1, y: 8)
+        MonthlyProgress.layer.cornerRadius = 20
         
     }
     
+    //Monthly Budget View
+    
+    var monthSpentAmount: Int = 0
+    let budget: Int = 2000
+    
+   
+    
+    
+    
+    
     // Category TableView
+    
     override func viewDidAppear(_ animated: Bool) {
         loadData()
     }
@@ -52,6 +67,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CellTableViewCell
         let cat = category[indexPath.row]
         if let leftInt = Int(cat.left ?? ""), let spentInt = Int(cat.spent ?? "") {
+            monthSpentAmount += spentInt
             let result = leftInt - spentInt
             cell.LeftLabel.text = "$\(result)"
         } else {
@@ -66,6 +82,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print("error converting to double")
         }
         
+     //Monthly Budget Breakdown
+        
+        SpentLabel.text = "$\(monthSpentAmount)"
+        let available = budget - monthSpentAmount
+        AvailableLabel.text = "$\(available)"
+        MonthlyProgress.progress = Float(Double(monthSpentAmount) / Double(budget))
         
         return cell
     }
@@ -83,6 +105,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print("Error loading data \(error)")
         }
         tableView?.reloadData()
+        
     }
     
     
