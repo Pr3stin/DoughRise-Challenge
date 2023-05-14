@@ -41,6 +41,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     // Category TableView
+    override func viewDidAppear(_ animated: Bool) {
+        loadData()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return category.count
@@ -48,7 +51,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CellTableViewCell
         let cat = category[indexPath.row]
+        if let leftInt = Int(cat.left ?? ""), let spentInt = Int(cat.spent ?? "") {
+            let result = leftInt - spentInt
+            cell.LeftLabel.text = "$\(result)"
+        } else {
+            print ("error")
+        }
         cell.TitleLabel?.text = cat.title
+        cell.SpentLabel?.text = "spent $\(cat.spent ?? "") of $\(cat.left ?? "")"
+        cell.CellImage?.image = UIImage(named: "restaurant")
+        if let leftDouble = Double(cat.left ?? ""), let spentDouble = Double(cat.spent ?? "") {
+            cell.CellProgress.progress = Float(spentDouble / leftDouble)
+        } else {
+            print("error converting to double")
+        }
+        
         
         return cell
     }
@@ -57,6 +74,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return 70
     }
     
+    func loadData() {
+        let request : NSFetchRequest<CategoryType> = CategoryType.fetchRequest()
+        let tableView = CategoryTableView
+        do {
+            category = try context.fetch(request)
+        } catch {
+            print("Error loading data \(error)")
+        }
+        tableView?.reloadData()
+    }
     
     
     
