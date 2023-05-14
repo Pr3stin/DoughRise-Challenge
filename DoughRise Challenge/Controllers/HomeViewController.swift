@@ -6,15 +6,21 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var MonthlyBudgetView: UIView!
-    @IBOutlet weak var CategoryTableView: UITableView!
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     @IBOutlet weak var BudgetBreakdownView: UIView!
+    @IBOutlet weak var MonthlyBudgetView: UIView!
+    @IBOutlet weak var BudgetLabel: UILabel!
+    @IBOutlet weak var SpentLabel: UILabel!
+    @IBOutlet weak var AvailableLabel: UILabel!
+    @IBOutlet weak var CategoryTableView: UITableView!
     @IBOutlet weak var AddButton: UIButton!
     
-    var category = [CategoryClass]()
+    var category = [CategoryType]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,26 +28,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         CategoryTableView.delegate = self
         CategoryTableView.dataSource = self
-        
-        //Different Categories
-        
-        let education = CategoryClass()
-        education.title = "Education"
-        category.append(education)
-        
-        let food = CategoryClass()
-        food.title = "Food"
-        
-        let shopping = CategoryClass()
-        shopping.title = "Shopping"
-        
-        let transportation = CategoryClass()
-        transportation.title = "Transportation"
-        
-        let bills = CategoryClass()
-        bills.title = "Bills"
        
-        
         // UI
         
         MonthlyBudgetView?.layer.cornerRadius = 25
